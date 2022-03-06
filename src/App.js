@@ -13,24 +13,13 @@ import {
   Route,
 } from "react-router-dom";
 
-
 const App = () => {
-  const [pacientes, setPacientes] = useState([]);
-
-  //Salvando no localStorage
+  const storage = JSON.parse(localStorage.getItem("pacientes")); // Ler item:
+  const [pacientes, setPacientes] = useState(storage);
   useEffect(() => {
-    const storageSet = JSON.stringify(pacientes);
-    localStorage.setItem("pacientes", storageSet);
-  }, [pacientes]);
+    localStorage.setItem("pacientes", JSON.stringify(pacientes)); // Criar item:
+}, [pacientes]);
 
-  //Carregando do localStorage
-  useEffect(() => {
-    const storageGet = localStorage.getItem("pacientes");
-    const savedPacientes = JSON.parse(storageGet);
-    if (savedPacientes) {
-      setPacientes(savedPacientes);
-    }
-  }, []);
   return (
     <BrowserRouter>
       <Navbar />
