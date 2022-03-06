@@ -1,7 +1,19 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Cadastrar from './Cadastrar'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
+const Table = styled.table`
+border-collapse: collapse;
+td, th {
+  border: 1px solid #bbb;
+  text-align: center;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #eee;
+}
+`
 const Button = styled.button`
 border: none;
 cursor: pointer;
@@ -17,11 +29,11 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
   const updatePaciente = () => {
   }
   return (
-    <div>
+    <div style={{ display:"flex", alignItems:"center", flexDirection:'column'}}>
       <h1>Listar Pacientes</h1>
-      <table>
+      <Table style={{ border:'1'}}>
         <thead>
-          <tr>
+          <tr style={{padding:'0 1rem'}}>
             <th>Nome</th>
             <th>Data de nascimento</th>
             <th>CPF</th>
@@ -58,7 +70,7 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
             </tr>
           )}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }

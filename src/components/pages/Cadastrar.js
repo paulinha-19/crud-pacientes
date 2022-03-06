@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form } from 'semantic-ui-react'
-import styled from 'styled-components';
+import { Form } from 'semantic-ui-react'
+import { Button } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
 
-const Input = styled.input`
-input:invalid {
-border-color: #DD2C00;
-input::before{
-    content: "⚠ ";
-}
-}
-`
+
+
 
 const Cadastrar = ({ pacientes, setPacientes }) => {
     const [pacienteInfo, setPacienteInfo] = useState({
@@ -42,14 +37,14 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
         setPacienteInfo({ nome: '', dataDeNascimento: '', cpf: '', sexo: '', endereco: '' });
     };
     return (
-        <div>
+        <Container maxWidth="sm" style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
             <>
                 <h1>Cadastrar paciente</h1>
             </>
-            <Form onSubmit={onFormSubmit} className='attached fluid segment'>
+            <Form onSubmit={onFormSubmit} className='attached fluid segment' >
                 <Form.Field>
                     <label htmlFor='nome'>Nome</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" size={35} maxLength='60'  pattern="[^' ']+" title='Não é permite espaço em branco' required />
+                    <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" size={35} maxLength='60' pattern="[^' ']+" title='Não é permite espaço em branco' required />
                     {pacienteInfo.nome}
                 </Form.Field>
                 <Form.Field>
@@ -75,11 +70,13 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
                 <Form.Field>
                     <label htmlFor='endereco'>Endereço</label>
                     <input onChange={handleFieldChange} value={pacienteInfo.endereco} name='endereco' type='text' id='endereco' placeholder='Insira seu endereço' size={35} />
-                    <Button type='submit' primary>Enviar</Button>
-                    <Button type='reset' secondary>Limpar</Button>
+                    <div>
+                        <Button type='submit' size="small" variant="contained" color="primary">Enviar</Button>
+                        <Button type='reset' size="small" variant="outlined">Limpar</Button>
+                    </div>
                 </Form.Field>
             </Form>
-        </div>
+        </Container>
 
     )
 }
