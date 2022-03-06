@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form } from 'semantic-ui-react'
+import styled from 'styled-components';
+
+const Input = styled.input`
+input:invalid {
+border-color: #DD2C00;
+input::before{
+    content: "⚠ ";
+}
+}
+`
 
 const Cadastrar = ({ pacientes, setPacientes }) => {
     const [pacienteInfo, setPacienteInfo] = useState({
@@ -17,10 +27,9 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
             [name]: value
         });
     }
-
     const onFormSubmit = (event) => {
         event.preventDefault();
-        if(!pacienteInfo) return;
+        if (!pacienteInfo) return;
         setPacientes([...pacientes, {
             id: Date.now(),
             nome: pacienteInfo.nome,
@@ -28,16 +37,10 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
             cpf: pacienteInfo.cpf,
             sexo: pacienteInfo.sexo,
             endereco: pacienteInfo.endereco.trim(),
-            status: false
+            status: true
         }]);
         setPacienteInfo({ nome: '', dataDeNascimento: '', cpf: '', sexo: '', endereco: '' });
     };
-
-    const deletePaciente = (idToDelete) => {
-        const filteredPaciente = pacientes.filter((paciente) => paciente.id !== idToDelete);
-        setPacienteInfo(filteredPaciente);
-      };
-
     return (
         <div>
             <>
@@ -46,12 +49,12 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
             <Form onSubmit={onFormSubmit} className='attached fluid segment'>
                 <Form.Field>
                     <label htmlFor='nome'>Nome</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" size={35} maxLength='60' required />
+                    <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" size={35} maxLength='60'  pattern="[^' ']+" title='Não é permite espaço em branco' required />
                     {pacienteInfo.nome}
                 </Form.Field>
                 <Form.Field>
                     <label htmlFor='dataDeNascimento'>Data de Nascimento</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.dataDeNascimento} name='dataDeNascimento' type='text' id='dataDeNascimento' placeholder="Formato: dd/mm/aaaa" pattern='(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\d\d' required />
+                    <input onChange={handleFieldChange} value={pacienteInfo.dataDeNascimento} name='dataDeNascimento' type='text' id='dataDeNascimento' placeholder="Formato: dd/mm/aaaa" pattern='(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\d\d' title='Não é permite espaço em branco ou ano menor que 1900' required />
                     {pacienteInfo.dataDeNascimento}
                 </Form.Field>
                 <Form.Field>
