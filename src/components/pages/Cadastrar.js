@@ -3,8 +3,14 @@ import { Form } from 'semantic-ui-react'
 import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import '../css/Cadastrar.css'
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 
-const Cadastrar = ({ pacientes, setPacientes }) => {
+const Cadastrar = ({ pacientes, setPacientes, classes }) => {
     const [pacienteInfo, setPacienteInfo] = useState({
         nome: "",
         dataDeNascimento: "",
@@ -39,41 +45,50 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
             <>
                 <h1>Cadastrar paciente</h1>
             </>
-            <Form onSubmit={onFormSubmit} className='attached fluid segment' >
+            <Box component="form" sx={{
+                '& > :not(style)': { m: 2, width: '25ch' },
+            }} onSubmit={onFormSubmit} className='attached fluid segment' >
                 <Form.Field>
-                    <label htmlFor='nome'>Nome</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" size={35} maxLength='60' pattern="[^' ']+" title='Não é permite espaço em branco' required />
+                    <TextField inputProps={{ inputMode: 'text', pattern:"[^' ']+"}}
+                        label="Nome" variant="outlined" onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' title='Não é permite espaço em branco' required />
                     {pacienteInfo.nome}
                 </Form.Field>
                 <Form.Field>
-                    <label htmlFor='dataDeNascimento'>Data de Nascimento</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.dataDeNascimento} name='dataDeNascimento' type='text' id='dataDeNascimento' placeholder="Formato: dd/mm/aaaa" pattern='(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\d\d' title='Não é permite espaço em branco ou ano menor que 1900' required />
+                    <TextField helperText="Formato xx/xx/xxxx" label="Data de nascimento" variant="outlined" onChange={handleFieldChange} value={pacienteInfo.dataDeNascimento} name='dataDeNascimento' type='text' id='dataDeNascimento' title='Não é permite espaço em branco ou ano menor que 1900' required />
                     {pacienteInfo.dataDeNascimento}
                 </Form.Field>
                 <Form.Field>
-                    <label htmlFor='cpf'>CPF</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.cpf} name='cpf' type='text' id='cpf' placeholder="Formato: xxx.xxx.xxx-xx" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required />
+                    <TextField helperText="Formato xxx.xxx.xxx-xx" label="CPF" variant="outlined" onChange={handleFieldChange} value={pacienteInfo.cpf} name='cpf' type='text' id='cpf' pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required />
                 </Form.Field>
                 <Form.Field>
-                    <label htmlFor='sexo'>Gênero</label>
-                    <select onChange={handleFieldChange} value={pacienteInfo.sexo} id='sexo' name='sexo' required>
-                        <option disabled>Escolha uma opção...</option>
-                        <option value="Femenino">Feminino</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="NaoBinario">Não-binário</option>
-                        <option value="Outros">Outros</option>
-                        <option value="NaoInformar">Prefiro não informar</option>
-                    </select>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="label-sexo">Gênero</InputLabel>
+                            <Select
+                                labelId="sexo"
+                                id="sexo"
+                                value={pacienteInfo.sexo}
+                                label="sexo"
+                                onChange={handleFieldChange}
+                                name='sexo'
+                                required
+                            >
+                                <MenuItem value='feminino'>Feminino</MenuItem>
+                                <MenuItem value='masculino'>Masculino</MenuItem>
+                                <MenuItem value='naoBinario'>Não-binário</MenuItem>
+                                <MenuItem value='naoInformar'>Prefiro não informar</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
                 </Form.Field>
                 <Form.Field>
-                    <label htmlFor='endereco'>Endereço</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.endereco} name='endereco' type='text' id='endereco' placeholder='Insira seu endereço' size={35} />
-                    <div>
-                        <Button type='submit' size="small" variant="contained" color="primary">Enviar</Button>
-                        <Button type='reset' size="small" variant="outlined">Limpar</Button>
-                    </div>
+                    <TextField label="Endereço" variant="outlined" onChange={handleFieldChange} value={pacienteInfo.endereco} name='endereco' type='text' id='endereco' />
                 </Form.Field>
-            </Form>
+                <Box style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Button type='submit' size="small" variant="contained" color="primary">Enviar</Button>
+                    <Button type='reset' size="small" variant="outlined">Limpar</Button>
+                </Box>
+            </Box>
         </Container>
 
     )

@@ -1,10 +1,11 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/pages/Home';
-import ListarPacientesTodos from './components/pages/ListarPacientesTodos';
+import ListarPacientesHome from './components/pages/ListarPacientesHome';
 import Sobre from './components/pages/Sobre';
 import Cadastrar from './components/pages/Cadastrar'
 import React, { useState, useEffect } from 'react'
+
 import {
   BrowserRouter,
   Routes,
@@ -12,11 +13,11 @@ import {
 } from "react-router-dom";
 
 const App = () => {
-  const storage = JSON.parse(localStorage.getItem("pacientes")); // Ler item:
+  const storage = JSON.parse(localStorage.getItem("pacientes"));
   const [pacientes, setPacientes] = useState(storage);
   const [pacienteEdit, setPacienteEdit] = useState(false);
   useEffect(() => {
-    localStorage.setItem("pacientes", JSON.stringify(pacientes)); // Criar item:
+    localStorage.setItem("pacientes", JSON.stringify(pacientes));
 }, [pacientes]);
 
   return (
@@ -27,7 +28,7 @@ const App = () => {
         </Route>
         <Route exact path="/cadastrar" element={<Cadastrar pacientes={pacientes} setPacientes={setPacientes} />}>
         </Route>
-        <Route exact path="/listar" element={<ListarPacientesTodos pacientes={pacientes} setPacientes={setPacientes}/>}>
+        <Route exact path="/listar" element={<ListarPacientesHome pacientes={pacientes} setPacientes={setPacientes}/>}>
         </Route>
         <Route exact path="/sobre" element={<Sobre />}>
         </Route>
