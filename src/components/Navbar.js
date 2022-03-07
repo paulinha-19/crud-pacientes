@@ -4,52 +4,22 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
     const [isOpen, setOpen] = useState(false);
     return (
-        <nav 
-            className="navbar is-primary"
-            role="navigation"
-            aria-label="main navigation"
-        >
-            <div className="container">
-                <div className="navbar-brand">
-                    <a
-                        role="button"
-                        className={`navbar-burger burger ${isOpen && "is-active"}`}
-                        aria-label="menu"
-                        aria-expanded="false"
-                        onClick={() => setOpen(!isOpen)}
-                    >
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
-                </div>
-
+        <nav>
+            <div>
                 <div className={`navbar-menu ${isOpen && "is-active"}`}>
-                    <div className="navbar-start" style={{ display:"flex", justifyContent:"space-evenly", flexWrap:'wrap'}}>
-                        <NavLink className="navbar-item" activeClassName="is-active" to="/">
+                    <div className="nav-link" style={{ display: "flex", justifyContent: "space-evenly", alignItems:'center', flexWrap: 'wrap', height: '3rem' }}>
+                        <NavLink activeClassName="is-active" to="/">
                             Home
                         </NavLink>
 
-                        <NavLink
-                            className="navbar-item"
-                            activeClassName="is-active"
-                            to="/cadastrar"
-                        >
+                        <NavLink to="/cadastrar">
                             Cadastrar paciente
                         </NavLink>
 
-                        <NavLink
-                            className="navbar-item"
-                            activeClassName="is-active"
-                            to="/listar"
-                        >
+                        <NavLink to="/listar">
                             Listar paciente
                         </NavLink>
-                        <NavLink
-                            className="navbar-item"
-                            activeClassName="is-active"
-                            to="/sobre"
-                        >
+                        <NavLink to="/sobre">
                             Sobre
                         </NavLink>
                     </div>

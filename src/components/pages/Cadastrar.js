@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form } from 'semantic-ui-react'
 import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-
-
-
+import '../css/Cadastrar.css'
 
 const Cadastrar = ({ pacientes, setPacientes }) => {
     const [pacienteInfo, setPacienteInfo] = useState({

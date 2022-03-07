@@ -1,6 +1,4 @@
 import './App.css';
-import Header from './components/Header';
-import Submit from './components/Submit'
 import Navbar from './components/Navbar';
 import Home from './components/pages/Home';
 import ListarPacientesTodos from './components/pages/ListarPacientesTodos';
