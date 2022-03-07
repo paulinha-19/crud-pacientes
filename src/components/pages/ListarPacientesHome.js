@@ -1,17 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
+
 
 const Table = styled.table`
 border-collapse: collapse;
@@ -28,7 +19,11 @@ const Button = styled.button`
 border: none;
 cursor: pointer;
 background-color: transparent;
-
+`
+const Info = styled.div`
+background-color: #E5F6FD;
+padding: 1.5rem;
+margin-top:2rem;
 `
 const ListarPacientes = ({ pacientes, setPacientes }) => {
   const [searchInput, setSearchInput] = useState()
@@ -48,12 +43,10 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
     setPacientes(newPatient);
   };
 
-  const classes = useStyles();
-
   return (
     <div style={{ display: "flex", alignItems: "center", flexDirection: 'column' }}>
       <h1>Listar Pacientes</h1>
-      <Box style={{marginBottom: '2rem'}}>
+      <Box style={{ marginBottom: '2rem' }}>
         <TextField label="Pesquisar" variant="outlined" onChange={handleSearch} name='search' type='text' id='search' />
       </Box>
       <Table style={{ border: '1' }}>
@@ -69,38 +62,39 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
           </tr>
         </thead>
         <tbody>
-          {pacientes.length === 0 && (
-            <div className={classes.root}>
-              <Alert severity="info">This is an info alert — check it out!</Alert>
-            </div>
+          {pacientes.length > 0 ? (
+              getFilteredPatients().map((paciente, index) => (
+                <tr key={paciente.id}>
+                  <td>{paciente.nome}</td>
+                  <td>{paciente.dataDeNascimento}</td>
+                  <td>{paciente.cpf}</td>
+                  <td>{paciente.sexo}</td>
+                  <td>{paciente.endereco}</td>
+                  <td>{paciente.status}</td>
+                  <td>
+                    <Button
+                      className="button muted-button"
+                      onClick={() => removePaciente(index)}
+                    >
+                      <i
+                        style={{ color: 'red' }}
+                        className="fa-solid fa-trash fa-xl"
+                      />
+                    </Button>
+                    <Button className="button muted-button">
+                      <i
+                        style={{ color: 'orange' }}
+                        className="fa-solid fa-pen-to-square fa-xl"
+                      />
+                    </Button>
+                  </td>
+                </tr>
+              ))
+          ) : (
+            <Info>
+              <p>Nenhum usuário para <strong>listar ou filtrar</strong></p>
+            </Info>
           )}
-          {getFilteredPatients().map((paciente, index) => (
-            <tr key={paciente.id}>
-              <td>{paciente.nome}</td>
-              <td>{paciente.dataDeNascimento}</td>
-              <td>{paciente.cpf}</td>
-              <td>{paciente.sexo}</td>
-              <td>{paciente.endereco}</td>
-              <td>{paciente.status}</td>
-              <td>
-                <Button
-                  className="button muted-button"
-                  onClick={() => removePaciente(index)}
-                >
-                  <i
-                    style={{ color: 'red' }}
-                    className="fa-solid fa-trash fa-xl"
-                  />
-                </Button>
-                <Button className="button muted-button">
-                  <i
-                    style={{ color: 'orange' }}
-                    className="fa-solid fa-pen-to-square fa-xl"
-                  />
-                </Button>
-              </td>
-            </tr>
-          ))}
         </tbody>
       </Table>
     </div>

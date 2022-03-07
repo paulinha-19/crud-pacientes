@@ -2,3 +2,7 @@ label{
     display: flex;
     flex-direction: column;
 }
+small{
+    display: block;
+    color: #ff0000;
+}
