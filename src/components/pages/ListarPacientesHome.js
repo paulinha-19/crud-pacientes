@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import TotalPacientes from '../TotalPacientes';
 
 const Table = styled.table`
 border-collapse: collapse;
@@ -106,6 +107,8 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
           )}
         </tbody>
       </Table>
+      <TotalPacientes listarTotalPaciente={pacientes.length}
+        listarStatus={pacientes.filter((paciente) => paciente.status).length}></TotalPacientes>
     </div>
   )
 }

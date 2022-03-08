@@ -15,7 +15,7 @@ import {
 const App = () => {
   const storage = JSON.parse(localStorage.getItem("pacientes"));
   const [pacientes, setPacientes] = useState(storage);
-  const [pacienteEdit, setPacienteEdit] = useState(false);
+  // const [pacienteEdit, setPacienteEdit] = useState(false); // para editar paciente
   useEffect(() => {
     localStorage.setItem("pacientes", JSON.stringify(pacientes));
 }, [pacientes]);

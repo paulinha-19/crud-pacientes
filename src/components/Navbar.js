@@ -4,10 +4,10 @@ import './css/Navbar.css'
 const Navbar = () => {
     const [isOpen, setOpen] = useState(false); // para o controle do mobile
     return (
-        <nav>
+        <nav className="nav-link">
             <div>
                 <div className={`navbar-menu ${isOpen && "is-active"}`}>
-                    <div className="nav-link" style={{ display: "flex", justifyContent: "space-evenly", alignItems: 'center', flexWrap: 'wrap', height: '3rem' }}>
+                    <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: 'center', flexWrap: 'wrap', height: '3rem' }}>
                         <NavLink activeClassName="is-active" to="/">
                             Home
                         </NavLink>

@@ -64,12 +64,10 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
                 <Form.Field>
                     <label htmlFor='nome'>Nome</label>
                     <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" size={30} maxLength='60' pattern="[a-zA-Z][a-zA-Z\s]*" title='Não é permite espaço em branco' required />
-                    {pacienteInfo.nome}
                 </Form.Field>
                 <Form.Field>
                     <label htmlFor='dataDeNascimento'>Data de Nascimento</label>
                     <input onChange={handleFieldChange} value={pacienteInfo.dataDeNascimento} name='dataDeNascimento' type='text' id='dataDeNascimento' placeholder="Formato: dd/mm/aaaa" pattern='(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\d\d' title='Não é permite espaço em branco ou ano menor que 1900' required />
-                    {pacienteInfo.dataDeNascimento}
                 </Form.Field>
                 <Form.Field>
                     <label htmlFor='cpf'>CPF</label>
@@ -88,9 +86,9 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
                     </select>
                 </Form.Field>
                 <Form.Field>
-                    <label htmlFor='endereco'>Endereço</label>
+                    <label className="label" htmlFor='endereco'>Endereço</label>
                     <input onChange={handleFieldChange} value={pacienteInfo.endereco} name='endereco' type='text' id='endereco' placeholder='Insira seu endereço' size={30} />
-                    <Box style={{ display: 'flex', justifyContent: 'space-around', marginTop: '1rem' }}>
+                    <Box style={{ display: 'flex', justifyContent: 'space-around' }}>
                         <Button type='submit' size="small" variant="contained" color="primary" disabled={disable}>Enviar</Button>
                         <Button type='reset' size="small" variant="outlined">Limpar</Button>
                     </Box>
