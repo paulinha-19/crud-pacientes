@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/pages/Home';
-import ListarPacientesHome from './components/pages/ListarPacientesHome';
+import ListarPacientesHome from './components/pages/ListarPacientes/ListarPacientesHome';
 import Sobre from './components/pages/Sobre';
 import Cadastrar from './components/pages/Cadastrar'
 import React, { useState, useEffect } from 'react'
@@ -13,11 +13,12 @@ import {
 } from "react-router-dom";
 
 const App = () => {
-  const storage = JSON.parse(localStorage.getItem("pacientes"));
+  const storage = JSON.parse(localStorage.getItem("pacientes")); // pega a string JSON e converte para objeto JavaScript
   const [pacientes, setPacientes] = useState(storage);
   // const [pacienteEdit, setPacienteEdit] = useState(false); // para editar paciente
   useEffect(() => {
-    localStorage.setItem("pacientes", JSON.stringify(pacientes));
+    localStorage.setItem("pacientes", JSON.stringify(pacientes));//converting to string JSON
+
 }, [pacientes]);
 
   return (

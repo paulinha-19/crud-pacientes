@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const ListarTotalPaciente = styled.div`
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
+    padding-top: 1rem;
     font-weight: bold;
+    p.padding-bottom{
+        padding-bottom: 0.5rem;
+    }
     @media (min-width: 426px) and (max-width: 550px){
         p{
             font-size: 0.8rem;
@@ -22,14 +23,14 @@ const ListarTotalPaciente = styled.div`
 const TotalPacientes = ({ listarTotalPaciente, listarStatus }) => {
     return (
         <ListarTotalPaciente>
-            <p className='total-paciente'>
+            <p className='padding-bottom'>
                 Total: {listarTotalPaciente} {listarTotalPaciente <= 1 ? "paciente" : "pacientes"}
             </p>
-            <p>
+            <p className='padding-bottom'>
                 Ativo: {listarStatus}
             </p>
             <p>
-                Inativo: {listarTotalPaciente - listarStatus} {listarTotalPaciente - listarStatus <= 1 ? "paciente" : "Pacientes"}
+                Inativo: {listarTotalPaciente - listarStatus} {listarTotalPaciente - listarStatus <= 1 ? "paciente" : "pacientes"}
             </p>
         </ListarTotalPaciente>
     )

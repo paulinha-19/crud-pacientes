@@ -8,7 +8,7 @@ small{
     color: #ff0000;
 }
 input{
-    border: 1px solid #dedede;
+    border: 1px solid rgb(61, 59, 59);
     border-radius: 4px;
     outline: none;
     background: transparent;
