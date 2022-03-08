@@ -18,7 +18,6 @@ i.fa-solid.fa-eye{
   color: #005F5D;
 }
 `
-
 const useStyles = makeStyles({
   root: {
     maxWidth: 320,

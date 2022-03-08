@@ -3,16 +3,19 @@ import styled from 'styled-components'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
-
 const Table = styled.table`
 border-collapse: collapse;
 td, th {
   border: 1px solid #bbb;
   text-align: center;
-  padding: 8px;
+  padding: 1rem;
 }
 tr:nth-child(even) {
   background-color: #eee;
+}
+tr.status-paciente{
+  text-decoration: line-through solid  #d60e0e;
+  opacity: 0.5;
 }
 `
 const Button = styled.button`
@@ -28,7 +31,7 @@ margin-top:2rem;
 const ListarPacientes = ({ pacientes, setPacientes }) => {
   const [searchInput, setSearchInput] = useState()
 
-  const getFilteredPatients = () => {
+  const FilteredPatientsByName = () => {
     if (!searchInput) return pacientes
     return pacientes.filter(
       paciente => paciente.nome.toLowerCase() === searchInput.toLowerCase()
@@ -43,11 +46,18 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
     setPacientes(newPatient);
   };
 
+  const handleDisablePatientClick = (paciente) => {
+    setPacientes(
+      pacientes.map((item) =>
+        item.id === paciente.id ? { ...item, status: !item.status } : item
+      )
+    );
+  }
   return (
     <div style={{ display: "flex", alignItems: "center", flexDirection: 'column' }}>
       <h1>Listar Pacientes</h1>
       <Box style={{ marginBottom: '2rem' }}>
-        <TextField label="Pesquisar" variant="outlined" onChange={handleSearch} name='search' type='text' id='search' />
+        <TextField label="Pesquisar paciente" variant="outlined" onChange={handleSearch} name='search' type='text' id='search' />
       </Box>
       <Table style={{ border: '1' }}>
         <thead>
@@ -63,15 +73,16 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
         </thead>
         <tbody>
           {pacientes.length > 0 ? (
-              getFilteredPatients().map((paciente, index) => (
-                <tr key={paciente.id}>
-                  <td>{paciente.nome}</td>
-                  <td>{paciente.dataDeNascimento}</td>
-                  <td>{paciente.cpf}</td>
-                  <td>{paciente.sexo}</td>
-                  <td>{paciente.endereco}</td>
-                  <td>{paciente.status}</td>
-                  <td>
+            FilteredPatientsByName().map((paciente, index) => (
+              <tr key={paciente.id} className={`${paciente.status ? "" : "status-paciente"}`}>
+                <td>{paciente.nome}</td>
+                <td>{paciente.dataDeNascimento}</td>
+                <td>{paciente.cpf}</td>
+                <td>{paciente.sexo}</td>
+                <td>{paciente.endereco}</td>
+                <td><Button onClick={() => handleDisablePatientClick(paciente)} style={{ backgroundColor: '#16ab14', padding: '5px', fontWeight: '600' }}>{paciente.status === true ? 'Ativo' : 'Inativo'}</Button></td>
+                <td>
+                  <Box style={{ display: "flex", justifyContent: "space-between" }}>
                     <Button
                       className="button muted-button"
                       onClick={() => removePaciente(index)}
@@ -87,9 +98,10 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
                         className="fa-solid fa-pen-to-square fa-xl"
                       />
                     </Button>
-                  </td>
-                </tr>
-              ))
+                  </Box>
+                </td>
+              </tr>
+            ))
           ) : (
             <Info>
               <p>Nenhum usuário para <strong>listar ou filtrar</strong></p>

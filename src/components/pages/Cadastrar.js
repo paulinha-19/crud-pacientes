@@ -63,7 +63,7 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
             <Form onSubmit={onFormSubmit} className='attached fluid segment'>
                 <Form.Field>
                     <label htmlFor='nome'>Nome</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" size={30} maxLength='60' pattern="[^' ']+" title='Não é permite espaço em branco' required />
+                    <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" size={30} maxLength='60' pattern="[a-zA-Z][a-zA-Z\s]*" title='Não é permite espaço em branco' required />
                     {pacienteInfo.nome}
                 </Form.Field>
                 <Form.Field>
@@ -82,9 +82,9 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
                         <option value='' disabled>Escolha uma opção...</option>
                         <option value="Femenino">Feminino</option>
                         <option value="Masculino">Masculino</option>
-                        <option value="NaoBinario">Não-binário</option>
+                        <option value="Não Binario">Não-binário</option>
                         <option value="Outros">Outros</option>
-                        <option value="NaoInformar">Prefiro não informar</option>
+                        <option value="Não Informado">Prefiro não informar</option>
                     </select>
                 </Form.Field>
                 <Form.Field>
@@ -100,5 +100,4 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
 
     )
 }
-
 export default Cadastrar
