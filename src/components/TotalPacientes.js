@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const ListarTotalPaciente = styled.div`
     display: flex;
+    justify-content: center;
     padding: 1rem;
     font-weight: bold;
     @media (min-width: 426px) and (max-width: 550px){

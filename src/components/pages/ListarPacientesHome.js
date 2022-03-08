@@ -101,14 +101,16 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
               </tr>
             ))
           ) : (
-            <Info>
-              <p>Nenhum usuário para <strong>listar ou filtrar</strong></p>
-            </Info>
+            console.log("Sem dado")
           )}
         </tbody>
       </Table>
+      <Info>
+        <p>Nenhum usuário para <strong>listar ou filtrar</strong></p>
+      </Info>
       <TotalPacientes listarTotalPaciente={pacientes.length}
-        listarStatus={pacientes.filter((paciente) => paciente.status).length}></TotalPacientes>
+        listarStatus={pacientes.filter((paciente) => paciente.status).length}>
+      </TotalPacientes>
     </div>
   )
 }
