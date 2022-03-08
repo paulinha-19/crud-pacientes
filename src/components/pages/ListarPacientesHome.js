@@ -31,12 +31,9 @@ margin-top:2rem;
 const ListarPacientes = ({ pacientes, setPacientes }) => {
   const [searchInput, setSearchInput] = useState()
 
-  const FilteredPatientsByName = () => {
-    if (!searchInput) return pacientes
-    return pacientes.filter(
-      paciente => paciente.nome.toLowerCase() === searchInput.toLowerCase()
-    )
-  }
+  const FilteredPatientsByName =
+    !searchInput ? pacientes : pacientes.filter(paciente => paciente.nome.toLowerCase().includes(searchInput.toLowerCase()))
+
   const handleSearch = (event) => {
     setSearchInput(event.target.value);
   };
@@ -57,7 +54,7 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
     <div style={{ display: "flex", alignItems: "center", flexDirection: 'column' }}>
       <h1>Listar Pacientes</h1>
       <Box style={{ marginBottom: '2rem' }}>
-        <TextField label="Pesquisar paciente" variant="outlined" onChange={handleSearch} name='search' type='text' id='search' />
+        <TextField value={searchInput} label="Pesquisar paciente" variant="outlined" onChange={handleSearch} name='search' type='text' id='search' />
       </Box>
       <Table style={{ border: '1' }}>
         <thead>
@@ -73,7 +70,7 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
         </thead>
         <tbody>
           {pacientes.length > 0 ? (
-            FilteredPatientsByName().map((paciente, index) => (
+            FilteredPatientsByName.map((paciente, index) => (
               <tr key={paciente.id} className={`${paciente.status ? "" : "status-paciente"}`}>
                 <td>{paciente.nome}</td>
                 <td>{paciente.dataDeNascimento}</td>
