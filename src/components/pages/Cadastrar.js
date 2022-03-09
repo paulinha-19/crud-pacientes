@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import '../css/Cadastrar.css'
 import { Form } from 'semantic-ui-react'
 import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import '../css/Cadastrar.css'
 import Box from '@mui/material/Box';
 
 const Cadastrar = ({ pacientes, setPacientes }) => {
+    const [open, setOpen] = useState(true);
     const [pacienteInfo, setPacienteInfo] = useState({
         nome: "",
         dataDeNascimento: "",
@@ -14,8 +15,9 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
         endereco: "",
     });
     const [disable, setDisable] = useState(false);
-    const [checkCpf, setCheckCpf] = useState({
-        errorMessageCpf: "",
+    const [mensage, setMensage] = useState({
+        messageCpf: "",
+        mensageSubmit: ''
     });
     const handleFieldChange = (event) => {
         const { name, value } = event.target;
@@ -29,7 +31,7 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
         if (!pacienteInfo) return;
         setPacientes([...pacientes, {
             id: Date.now(),
-            nome: pacienteInfo.nome,
+            nome: pacienteInfo.nome.trim(),
             dataDeNascimento: pacienteInfo.dataDeNascimento,
             cpf: pacienteInfo.cpf,
             sexo: pacienteInfo.sexo,
@@ -44,12 +46,12 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
         const ifExistCpf = () => {
             const filterCpf = pacientes.some(item => item.cpf === pacienteInfo.cpf);
             if (filterCpf === true) {
-                setCheckCpf({
-                    errorMessageCpf: "Esse CPF já existe",
+                setMensage({
+                    messageCpf: "Esse CPF já existe",
                 });
             } else {
-                setCheckCpf({
-                    errorMessageCpf: '',
+                setMensage({
+                    messageCpf: '',
                 });
             }
         }
@@ -57,25 +59,25 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
     }, [pacientes, pacienteInfo]);
     return (
         <Container maxWidth="sm" style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
-            <>
+            <Box>
                 <h1>Cadastrar paciente</h1>
-            </>
+            </Box>
             <Form onSubmit={onFormSubmit} className='attached fluid segment'>
                 <Form.Field>
                     <label htmlFor='nome'>Nome</label>
                     <input onChange={handleFieldChange} value={pacienteInfo.nome} name='nome' type='text' id='nome' placeholder="Insira seu nome" maxLength='60' pattern="[a-zA-Z][a-zA-Z\s]*" title='Não é permite espaço em branco' required />
                 </Form.Field>
                 <Form.Field>
-                    <label htmlFor='dataDeNascimento'>Data de Nascimento</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.dataDeNascimento} name='dataDeNascimento' type='text' id='dataDeNascimento' placeholder="Formato: dd/mm/aaaa" pattern='(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\d\d' title='Não é permite espaço em branco ou ano menor que 1900' required />
+                    <label className="margin-top" htmlFor='dataDeNascimento'>Data de Nascimento</label>
+                    <input onChange={handleFieldChange} value={pacienteInfo.dataDeNascimento} name='dataDeNascimento' type='text' id='dataDeNascimento' placeholder="Formato: dd/mm/aaaa" pattern='(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\d\d' title='É permitido ano entre 1900 e 2099' required />
                 </Form.Field>
                 <Form.Field>
-                    <label htmlFor='cpf'>CPF</label>
+                    <label className="margin-top" htmlFor='cpf'>CPF</label>
                     <input onChange={handleFieldChange} value={pacienteInfo.cpf} name='cpf' type='text' id='cpf' placeholder="Formato: xxx.xxx.xxx-xx" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required />
-                    <small>{checkCpf.errorMessageCpf}</small>
+                    <small>{mensage.messageCpf}</small>
                 </Form.Field>
                 <Form.Field>
-                    <label htmlFor='sexo'>Gênero</label>
+                    <label className="margin-top" htmlFor='sexo'>Gênero</label>
                     <select onChange={handleFieldChange} value={pacienteInfo.sexo} id='sexo' name='sexo' required>
                         <option value='' disabled>Escolha uma opção...</option>
                         <option value="Femenino">Feminino</option>
@@ -87,9 +89,9 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
                 </Form.Field>
                 <Form.Field>
                     <label className="label" htmlFor='endereco'>Endereço</label>
-                    <input onChange={handleFieldChange} value={pacienteInfo.endereco} name='endereco' type='text' id='endereco' placeholder='Insira seu endereço'/>
+                    <input onChange={handleFieldChange} value={pacienteInfo.endereco} name='endereco' type='text' id='endereco' placeholder='Insira seu endereço' />
                 </Form.Field>
-                <Box style={{ display: 'flex', justifyContent: 'space-around' }}>
+                <Box className="margin-top" style={{ display: 'flex', justifyContent: 'space-around' }}>
                     <Button type='submit' size="small" variant="contained" color="primary" disabled={disable}>Enviar</Button>
                     <Button type='reset' size="small" variant="outlined">Limpar</Button>
                 </Box>

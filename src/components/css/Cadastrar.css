@@ -13,7 +13,9 @@ input{
     outline: none;
     background: transparent;
     line-height: 1;
-    margin-bottom: 1rem;
+}
+.margin-top{
+    margin-top:1rem
 }
 input,
 select{
@@ -21,5 +23,4 @@ select{
 }
 select{
     margin-bottom: 1rem;
-
 }

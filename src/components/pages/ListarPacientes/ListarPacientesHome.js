@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import TotalPacientes from '../ListarPacientes/TotalPacientes';
 import Alert from '@mui/material/Alert';
 import { Container } from 'semantic-ui-react';
-import { style } from '@mui/system';
 
 const Table = styled.table`
 border-collapse: collapse;
@@ -29,8 +28,11 @@ background-color: transparent;
 `
 
 const ListarPacientes = ({ pacientes, setPacientes }) => {
-  const [searchInput, setSearchInput] = useState()
-
+  const [searchInput, setSearchInput] = useState();
+  const [remove, setRemove] = useState({
+    success: false,
+    menssageRemove: '',
+  });
   const FilteredPatientsByName =
     !searchInput ? pacientes : pacientes.filter(paciente => paciente.nome.toLowerCase().includes(searchInput.toLowerCase()))
 
@@ -38,11 +40,18 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
     setSearchInput(event.target.value);
   };
   const removePaciente = (idToDelete) => {
-    const newPatient = [...pacientes];
-    newPatient.splice(idToDelete, 1);
-    setPacientes(newPatient);
+    const confirmarExclusao = window.confirm("Confirmar exclusão?");
+    if (confirmarExclusao) {
+      const newPatient = [...pacientes];
+      newPatient.splice(idToDelete, 1);
+      setPacientes(newPatient);
+      setRemove({
+        success: true,
+        menssageRemove: 'Paciente removido',
+      });
+      setTimeout(() => setRemove({ success: false, menssageRemove: '' }), 3000);
+    }
   };
-
   const handleDisablePatientClick = (paciente) => {
     setPacientes(
       pacientes.map((item) =>
@@ -101,15 +110,19 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
                 </tr>
               ))
             ) : (
-              console.log("Sem dado")
+              <Alert style={{ marginTop: '2rem' }} severity="info">Nenhum usuário para <strong>listar ou filtrar</strong></Alert>
             )}
           </tbody>
         </Table>
-        <Alert style={{ marginTop: '2rem' }} severity="info">Nenhum usuário para <strong>listar ou filtrar</strong></Alert>
         <TotalPacientes
           listarTotalPaciente={pacientes.length}
           listarStatus={pacientes.filter((paciente) => paciente.status).length}>
         </TotalPacientes>
+        <Box style={{ marginTop: '2rem' }}>
+          {remove.success === true ?
+            <Alert severity="success">Paciente removido</Alert>
+            : ''}
+        </Box>
       </div>
     </Container>
   )
