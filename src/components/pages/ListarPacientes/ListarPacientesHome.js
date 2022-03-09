@@ -59,6 +59,9 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
       )
     );
   }
+
+  const handleClick = () => {
+  }
   return (
     <Container>
       <div style={{ display: "flex", alignItems: "center", flexDirection: 'column' }}>
@@ -99,7 +102,10 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
                           className="fa-solid fa-trash fa-xl"
                         />
                       </Button>
-                      <Button className="button muted-button">
+                      <Button
+                        className="button muted-button"
+                        onClick={() => handleClick()}
+                      >
                         <i
                           style={{ color: 'orange' }}
                           className="fa-solid fa-pen-to-square fa-xl"
