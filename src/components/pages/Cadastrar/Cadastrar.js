@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import '../css/Cadastrar.css'
+import './Cadastrar.css'
 import { Form } from 'semantic-ui-react'
 import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';

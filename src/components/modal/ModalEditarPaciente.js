@@ -43,7 +43,6 @@ const ModalFormulario = () => {
     return (
         <div>
             <Button onClick={handleOpen}>Editar</Button>
-
             <Modal
                 open={open.show}
                 aria-labelledby="modal-modal-title"

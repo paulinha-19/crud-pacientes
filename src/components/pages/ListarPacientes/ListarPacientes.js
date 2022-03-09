@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import TotalPacientes from '../ListarPacientes/TotalPacientes';
+import TotalPacientes from '../../TotalPacientes/TotalPacientes';
 import Alert from '@mui/material/Alert';
 import { Container } from 'semantic-ui-react';
 
@@ -59,9 +59,6 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
       )
     );
   }
-
-  const handleClick = () => {
-  }
   return (
     <Container>
       <div style={{ display: "flex", alignItems: "center", flexDirection: 'column' }}>
@@ -104,7 +101,6 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
                       </Button>
                       <Button
                         className="button muted-button"
-                        onClick={() => handleClick()}
                       >
                         <i
                           style={{ color: 'orange' }}

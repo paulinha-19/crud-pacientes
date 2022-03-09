@@ -1,9 +1,9 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import Home from './components/pages/Home';
-import ListarPacientesHome from './components/pages/ListarPacientes/ListarPacientesHome';
-import Sobre from './components/pages/Sobre';
-import Cadastrar from './components/pages/Cadastrar'
+import Home from './components/pages/Home/Home';
+import ListarPacientesHome from './components/pages/ListarPacientes/ListarPacientes';
+import Sobre from './components/pages/Sobre/Sobre';
+import Cadastrar from './components/pages/Cadastrar/Cadastrar'
 import React, { useState, useEffect } from 'react'
 
 import {

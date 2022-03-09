@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import './css/Navbar.css'
+import '../assets/css/Navbar.css'
 const Navbar = () => {
     const [isOpen, setOpen] = useState(false); // para o controle do mobile
     return (
