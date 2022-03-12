@@ -15,7 +15,7 @@ import {
 const App = () => {
   const storage = JSON.parse(localStorage.getItem("pacientes")); // pega a string JSON e converte para objeto JavaScript
   const [pacientes, setPacientes] = useState(storage);
-  // const [pacienteEdit, setPacienteEdit] = useState(false); // para editar paciente
+  const [pacienteEdit, setPacienteEdit] = useState(false); // para editar paciente
   useEffect(() => {
     localStorage.setItem("pacientes", JSON.stringify(pacientes));//converting to string JSON
 
@@ -27,9 +27,9 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />}>
         </Route>
-        <Route exact path="/cadastrar" element={<Cadastrar pacientes={pacientes} setPacientes={setPacientes} />}>
+        <Route exact path="/cadastrar" element={<Cadastrar pacientes={pacientes} setPacientes={setPacientes} pacienteEdit={pacienteEdit} setPacienteEdit={setPacienteEdit} />}>
         </Route>
-        <Route exact path="/listar" element={<ListarPacientesHome pacientes={pacientes} setPacientes={setPacientes}/>}>
+        <Route exact path="/listar" element={<ListarPacientesHome pacientes={pacientes} setPacientes={setPacientes} setPacienteEdit={setPacienteEdit}/>}>
         </Route>
         <Route exact path="/sobre" element={<Sobre />}>
         </Route>

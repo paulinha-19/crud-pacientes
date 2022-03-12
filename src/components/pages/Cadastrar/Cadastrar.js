@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Box from '@mui/material/Box';
 
-const Cadastrar = ({ pacientes, setPacientes }) => {
+const Cadastrar = ({ pacientes, setPacientes, pacienteEdit, setPacienteEdit }) => {
     const [pacienteInfo, setPacienteInfo] = useState({
         nome: "",
         dataDeNascimento: "",
@@ -25,19 +25,39 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
             [name]: value
         });
     }
+    const submitEdits = (nome, dataDeNascimento, cpf, sexo, endereco, id, status) => {
+        const updatePaciente = pacientes.map((paciente) =>
+            paciente.id === id ? {
+                nome,
+                dataDeNascimento,
+                cpf,
+                sexo,
+                endereco,
+                id,
+                status
+            } :
+                paciente
+        );
+        setPacientes(updatePaciente);
+        setPacienteEdit("");
+    }
     const onFormSubmit = (event) => {
         event.preventDefault();
-        if (!pacienteInfo) return;
-        setPacientes([...pacientes, {
-            id: Date.now(),
-            nome: pacienteInfo.nome.trim(),
-            dataDeNascimento: pacienteInfo.dataDeNascimento,
-            cpf: pacienteInfo.cpf,
-            sexo: pacienteInfo.sexo,
-            endereco: pacienteInfo.endereco.trim(),
-            status: true
-        }]);
-        setPacienteInfo({ nome: '', dataDeNascimento: '', cpf: '', sexo: '', endereco: '' });
+        if (pacienteInfo) {
+            setPacientes([...pacientes, {
+                id: Date.now(),
+                nome: pacienteInfo.nome.trim(),
+                dataDeNascimento: pacienteInfo.dataDeNascimento,
+                cpf: pacienteInfo.cpf,
+                sexo: pacienteInfo.sexo,
+                endereco: pacienteInfo.endereco.trim(),
+                status: true
+            }]);
+            setPacienteInfo({ nome: '', dataDeNascimento: '', cpf: '', sexo: '', endereco: '' });
+        } else {
+            submitEdits(pacienteInfo.nome, pacienteInfo.dataDeNascimento, pacienteInfo.cpf, pacienteInfo.sexo, pacienteInfo.endereco, pacienteEdit.id, pacienteEdit.status);
+        }
+
     };
     //Desabilita botao enviar se existir cpf duplicado
     useEffect(() => {
@@ -57,10 +77,10 @@ const Cadastrar = ({ pacientes, setPacientes }) => {
         ifExistCpf();
     }, [pacientes, pacienteInfo]);
     return (
-        <Container maxWidth="sm" style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
-            <Box>
+        <Container maxWidth="sm" style={{ display: "flex", flexDirection: 'column', alignItems: 'center', paddingTop: '4rem' }}>
+            {/* <Box>
                 <h1>Cadastrar paciente</h1>
-            </Box>
+            </Box> */}
             <Form onSubmit={onFormSubmit} className='attached fluid segment'>
                 <Form.Field>
                     <label htmlFor='nome'>Nome</label>

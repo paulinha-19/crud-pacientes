@@ -28,14 +28,11 @@ cursor: pointer;
 background-color: transparent;
 `
 
-const ListarPacientes = ({ pacientes, setPacientes }) => {
+const ListarPacientes = ({ pacientes, setPacientes, setPacienteEdit }) => {
   const [searchInput, setSearchInput] = useState();
   const [remove, setRemove] = useState({
     success: false,
     menssageRemove: '',
-  });
-  const [open, setOpen] = useState({
-    show: false
   });
   const FilteredPatientsByName =
     !searchInput ? pacientes : pacientes.filter(paciente => paciente.nome.toLowerCase().includes(searchInput.toLowerCase()))
@@ -62,6 +59,10 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
         item.id === paciente.id ? { ...item, status: !item.status } : item
       )
     );
+  }
+  const handleEditClick = ({ id }) => {
+    const findPaciente = pacientes.find((paciente) => paciente.id === id);
+    setPacienteEdit(findPaciente);
   }
   return (
     <Container>
@@ -103,9 +104,12 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
                           className="fa-solid fa-trash fa-xl"
                         />
                       </Button>
-                      <Box>
+
+                      <Button
+                        onClick={() => handleEditClick(paciente)}
+                      >
                         <ModalEditarPaciente pacientes={pacientes} setPacientes={setPacientes} />
-                      </Box>
+                      </Button>
                     </Box>
                   </td>
                 </tr>
