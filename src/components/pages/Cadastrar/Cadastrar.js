@@ -6,7 +6,6 @@ import Container from '@material-ui/core/Container';
 import Box from '@mui/material/Box';
 
 const Cadastrar = ({ pacientes, setPacientes }) => {
-    const [open, setOpen] = useState(true);
     const [pacienteInfo, setPacienteInfo] = useState({
         nome: "",
         dataDeNascimento: "",

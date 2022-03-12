@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import TotalPacientes from '../../TotalPacientes/TotalPacientes';
 import Alert from '@mui/material/Alert';
 import { Container } from 'semantic-ui-react';
+import ModalEditarPaciente from '../../modal/ModalEditarPaciente'
 
 const Table = styled.table`
 border-collapse: collapse;
@@ -32,6 +33,9 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
   const [remove, setRemove] = useState({
     success: false,
     menssageRemove: '',
+  });
+  const [open, setOpen] = useState({
+    show: false
   });
   const FilteredPatientsByName =
     !searchInput ? pacientes : pacientes.filter(paciente => paciente.nome.toLowerCase().includes(searchInput.toLowerCase()))
@@ -99,14 +103,9 @@ const ListarPacientes = ({ pacientes, setPacientes }) => {
                           className="fa-solid fa-trash fa-xl"
                         />
                       </Button>
-                      <Button
-                        className="button muted-button"
-                      >
-                        <i
-                          style={{ color: 'orange' }}
-                          className="fa-solid fa-pen-to-square fa-xl"
-                        />
-                      </Button>
+                      <Box>
+                        <ModalEditarPaciente pacientes={pacientes} setPacientes={setPacientes} />
+                      </Box>
                     </Box>
                   </td>
                 </tr>

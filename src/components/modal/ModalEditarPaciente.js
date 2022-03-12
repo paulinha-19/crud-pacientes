@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
+import Cadastrar from '../pages/Cadastrar/Cadastrar'
 
 const NewBox = styled(Box)(({ theme }) => ({
     width: "50%",
@@ -26,7 +27,7 @@ const buttonClose = {
     top: "0"
 };
 
-const ModalFormulario = () => {
+const ModalFormulario = ({ pacientes, setPacientes }) => {
     const [open, setOpen] = useState({
         show: false
     });
@@ -42,7 +43,14 @@ const ModalFormulario = () => {
     };
     return (
         <div>
-            <Button onClick={handleOpen}>Editar</Button>
+            <Button onClick={handleOpen}
+                className="button muted-button"
+            >
+                <i
+                    style={{ color: 'orange' }}
+                    className="fa-solid fa-pen-to-square fa-xl"
+                />
+            </Button>
             <Modal
                 open={open.show}
                 aria-labelledby="modal-modal-title"
@@ -64,9 +72,7 @@ const ModalFormulario = () => {
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Editar paciente
                     </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </Typography>
+                    <Cadastrar pacientes={pacientes} setPacientes={setPacientes} />
                 </NewBox>
             </Modal>
         </div>
