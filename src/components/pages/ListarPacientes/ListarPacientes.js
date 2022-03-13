@@ -115,7 +115,7 @@ const ListarPacientes = ({ pacientes, setPacientes, setPacienteEdit }) => {
                 </tr>
               ))
             ) : (
-              <Alert style={{ marginTop: '2rem' }} severity="info">Nenhum usuário para <strong>listar ou filtrar</strong></Alert>
+              <p></p>
             )}
           </tbody>
         </Table>

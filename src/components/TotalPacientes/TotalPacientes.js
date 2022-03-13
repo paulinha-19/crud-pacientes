@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Alert from '@mui/material/Alert';
 
 const ListarTotalPaciente = styled.div`
     padding-top: 1rem;
@@ -22,17 +23,23 @@ const ListarTotalPaciente = styled.div`
 `
 const TotalPacientes = ({ listarTotalPaciente, listarStatus }) => {
     return (
-        <ListarTotalPaciente>
-            <p className='padding-bottom'>
-                Total: {listarTotalPaciente} {listarTotalPaciente <= 1 ? "paciente" : "pacientes"}
-            </p>
-            <p className='padding-bottom'>
-                Ativo: {listarStatus}
-            </p>
-            <p>
-                Inativo: {listarTotalPaciente - listarStatus} {listarTotalPaciente - listarStatus <= 1 ? "paciente" : "pacientes"}
-            </p>
-        </ListarTotalPaciente>
+        <div>
+            {listarTotalPaciente > 0 ? (
+                <ListarTotalPaciente>
+                    <p className='padding-bottom'>
+                        Total: {listarTotalPaciente} {listarTotalPaciente <= 1 ? "paciente" : "pacientes"}
+                    </p>
+                    <p className='padding-bottom'>
+                        Ativo: {listarStatus}
+                    </p>
+                    <p>
+                        Inativo: {listarTotalPaciente - listarStatus} {listarTotalPaciente - listarStatus <= 1 ? "paciente" : "pacientes"}
+                    </p>
+                </ListarTotalPaciente>
+            ) : (
+                <Alert style={{ marginTop: '2rem' }} severity="info">Nenhum usuário para <strong>listar ou filtrar</strong></Alert>
+            )}
+        </div>
     )
 }
 
