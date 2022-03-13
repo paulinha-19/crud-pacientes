@@ -8,18 +8,18 @@ const Navbar = () => {
             <div>
                 <div className={`navbar-menu ${isOpen && "is-active"}`}>
                     <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: 'center', flexWrap: 'wrap', height: '3rem' }}>
-                        <NavLink activeClassName="is-active" to="/">
+                        <NavLink activeClassName="active" to="/">
                             Home
                         </NavLink>
 
-                        <NavLink to="/cadastrar">
+                        <NavLink activeClassName="active" to="/cadastrar">
                             Cadastrar paciente
                         </NavLink>
 
-                        <NavLink to="/listar">
+                        <NavLink activeClassName="active" to="/listar">
                             Listar paciente
                         </NavLink>
-                        <NavLink to="/sobre">
+                        <NavLink activeClassName="active" to="/sobre">
                             Sobre
                         </NavLink>
                     </div>

@@ -1,7 +1,10 @@
 a{
 text-decoration: none;
 }
-
+.active{
+    border-bottom: 3px solid #303F9F;
+    font-weight: bold;
+}
 @media (min-width: 320) and (max-width: 440px) {
     .nav-link{
         display: flex;
