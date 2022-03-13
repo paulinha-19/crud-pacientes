@@ -4,6 +4,7 @@ import { Form } from 'semantic-ui-react'
 import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
 const Cadastrar = ({ pacientes, setPacientes, pacienteEdit, setPacienteEdit }) => {
     const [pacienteInfo, setPacienteInfo] = useState({
@@ -41,6 +42,7 @@ const Cadastrar = ({ pacientes, setPacientes, pacienteEdit, setPacienteEdit }) =
         setPacientes(updatePaciente);
         setPacienteEdit("");
     }
+    let navigate = useNavigate();
     const onFormSubmit = (event) => {
         event.preventDefault();
         if (pacienteInfo) {
@@ -54,10 +56,10 @@ const Cadastrar = ({ pacientes, setPacientes, pacienteEdit, setPacienteEdit }) =
                 status: true
             }]);
             setPacienteInfo({ nome: '', dataDeNascimento: '', cpf: '', sexo: '', endereco: '' });
+            setTimeout(() => navigate("/listar"), 1000);
         } else {
             submitEdits(pacienteInfo.nome, pacienteInfo.dataDeNascimento, pacienteInfo.cpf, pacienteInfo.sexo, pacienteInfo.endereco, pacienteEdit.id, pacienteEdit.status);
         }
-
     };
     //Desabilita botao enviar se existir cpf duplicado
     useEffect(() => {

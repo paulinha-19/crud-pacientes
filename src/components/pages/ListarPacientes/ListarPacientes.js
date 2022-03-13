@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import TotalPacientes from '../../TotalPacientes/TotalPacientes';
+import TotalPacientes from './TotalPacientes/TotalPacientes';
 import Alert from '@mui/material/Alert';
 import { Container } from 'semantic-ui-react';
 import ModalEditarPaciente from '../../modal/ModalEditarPaciente'
