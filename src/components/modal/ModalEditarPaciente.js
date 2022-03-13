@@ -24,7 +24,8 @@ const style = {
 const buttonClose = {
     position: "absolute",
     right: "0",
-    top: "0"
+    top: "0",
+    padding: '1rem 1rem 0 0'
 };
 
 const ModalFormulario = ({ pacientes, setPacientes }) => {
