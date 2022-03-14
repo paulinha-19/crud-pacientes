@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import TotalPacientes from './TotalPacientes/TotalPacientes';
 import Alert from '@mui/material/Alert';
 import { Container } from 'semantic-ui-react';
 import ModalEditarPaciente from '../../modal/ModalEditarPaciente'
+import PesquisarPaciente from './PesquisarPaciente/PesquisarPaciente';
 
 const Table = styled.table`
 border-collapse: collapse;
@@ -36,10 +36,6 @@ const ListarPacientes = ({ pacientes, setPacientes, setPacienteEdit }) => {
   });
   const FilteredPatientsByName =
     !searchInput ? pacientes : pacientes.filter(paciente => paciente.nome.toLowerCase().includes(searchInput.toLowerCase()))
-
-  const handleSearch = (event) => {
-    setSearchInput(event.target.value);
-  };
   const removePaciente = (idToDelete) => {
     const confirmarExclusao = window.confirm("Confirmar exclusão?");
     if (confirmarExclusao) {
@@ -68,9 +64,7 @@ const ListarPacientes = ({ pacientes, setPacientes, setPacienteEdit }) => {
     <Container>
       <div style={{ display: "flex", alignItems: "center", flexDirection: 'column' }}>
         <h1>Listar Pacientes</h1>
-        <Box style={{ marginBottom: '2rem' }}>
-          <TextField value={searchInput} label="Pesquisar paciente" variant="outlined" onChange={handleSearch} name='search' type='text' id='search' />
-        </Box>
+        <PesquisarPaciente searchInput={searchInput} setSearchInput={setSearchInput} />
         <Table style={{ border: '1' }}>
           <thead>
             <tr style={{ padding: '0 1rem' }}>
