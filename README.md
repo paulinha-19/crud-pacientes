@@ -27,7 +27,10 @@ O sistema também valida para não permitir CPF duplicado, lista pacientes com o
 ## Layout do projeto
 
 <div align="center">
-<img src="" width="800px" />
+<img src="https://user-images.githubusercontent.com/32405554/158715568-656d6934-cfc7-49ff-ade4-226ff218c223.png" width="800px" /> <br><br>
+<img src="https://user-images.githubusercontent.com/32405554/158715567-57f7c177-8718-4e2d-bc17-2d411e5f3781.png" width="800px" /> <br><br>
+<img src="https://user-images.githubusercontent.com/32405554/158715569-fea3a274-6776-4d2d-a459-f73762a2c0e8.png" width="800px" /> <br><br>
+<img src="https://user-images.githubusercontent.com/32405554/158715565-ea95d4bd-65d1-4c5f-8b22-1d3f57f07d16.png" width="800px" /> <br><br>
 </div>
 
 ## Iniciar projeto
