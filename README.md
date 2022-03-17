@@ -2,15 +2,15 @@
 
 ## Sobre o projeto
 Este recurso foi criado como desafio para uma vaga Front-end dev Jr. O objetivo foi desenvolver uma solução web para consultar e cadastrar pacientes.
-O cadastro de um paciente possui as seguintes informações:
-• Nome (obrigatório)
-• Data nascimento (obrigatório)
-• CPF (obrigatório)
-• Sexo (obrigatório)
-• Endereço (opcional)
-• Status (obrigatório – Ativo/Inativo)
+O cadastro de um paciente possui as seguintes informações: <br><br>
+• Nome (obrigatório)<br>
+• Data nascimento (obrigatório)<br>
+• CPF (obrigatório)<br>
+• Sexo (obrigatório)<br>
+• Endereço (opcional)<br>
+• Status (obrigatório – Ativo/Inativo)<br>
 
-O sistema também valida para não permitir CPF duplicado, lista pacientes com opção de filtro pelo nome, inativa paciente, lista o total de pacientes cadastrados assim como os ativos/inativos.
+O sistema também valida para não permitir CPF duplicado, lista pacientes com opção de filtro pelo nome, deleta paciente, inativa paciente, lista o total de pacientes cadastrados assim como os ativos/inativos.
 
 ## Tecnologias e ferramentas utilizadas
 
